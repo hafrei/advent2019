@@ -39,11 +39,11 @@ while is_stop == False:
   temp_y = gravity_assist[y_pos]
   temp_sav = gravity_assist[sav_pos]
   is_stop = stop_code(temp_ops)
-  print("Working on ops {} with {} and {} locations, saving at {}".format(temp_ops, temp_x, temp_y, temp_sav))
   if is_stop:
     print("Encountered ops code 99. Terminating with {}".format(gravity_assist[0]))
     break
   else:
+    print("Working on ops {} with {} and {} locations, saving at {}".format(temp_ops, temp_x, temp_y, temp_sav))
     process_vars(temp_ops,temp_x, temp_y,temp_sav, gravity_assist)
     opcode_pos += 4
     x_pos += 4
