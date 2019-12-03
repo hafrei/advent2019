@@ -8,12 +8,6 @@ def store(val, loc, arr):
   arr[loc] = val
   return arr
 
-def stop_code(ops):
-  assume_false = False
-  if ops == 99:
-    assume_false = True
-  return assume_false
-
 def process_vars(ops,x,y,sav,arr,log_out):
   if ops == 1:
     if log_out:
@@ -25,7 +19,6 @@ def process_vars(ops,x,y,sav,arr,log_out):
     store(multi(arr[x],arr[y]),sav,arr)
 
 def runner(gravity_assist,log_out):
-  is_stop = False
   opcode_pos = 0
   x_pos = 1
   y_pos = 2
@@ -33,13 +26,12 @@ def runner(gravity_assist,log_out):
   args = 4
   day2_target = 19690720
 
-  while is_stop == False:
+  while True:
     temp_ops = gravity_assist[opcode_pos]
     temp_x = gravity_assist[x_pos]
     temp_y = gravity_assist[y_pos]
     temp_sav = gravity_assist[sav_pos]
-    is_stop = stop_code(temp_ops)
-    if is_stop:
+    if temp_ops == 99:
       if gravity_assist[0] == day2_target:
         print("Encountered ops code 99. Terminating with {}, noun {} and verb {}".format(gravity_assist[0],gravity_assist[1],gravity_assist[2]))
       if log_out:
